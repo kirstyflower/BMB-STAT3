@@ -389,7 +389,7 @@ Now calculate the probability that you share your birthday with exactly two othe
 
 `@hint`
 <!-- Examples of good hints: https://instructor-support.datacamp.com/en/articles/2379164-hints-best-practices. -->
-- We still only calculating the probability you share your birthday with exactly 2 people, so use dbinom
+- We're still only calculating the probability you share your birthday with exactly 2 people, so use dbinom
 - Assume we have 150 students in our STAT class, but remember, size is the number of trials - you comparing your birthday with 149 other birthdays - therefore size=149
 - Your birthday happens on a specific day, therefore the probability of someone sharing that specific day with you is 1/365 - this is the probability argument
 - Even though there are 2 of you with the same birthday, we have to think about the size as number of trials, and x as number of successes, so you have 1 success when 1 person you compare your birthday with has the same one - therefore x = 1.
