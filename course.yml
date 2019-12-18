@@ -1,5 +1,6 @@
-title            : BMB STAT3
-description      : Online element of the BMB STAT course.
-university       : Imperial College London
-difficulty_level : 2
-time_needed      : 1 hour
+title: BMB STAT3
+description: Online element of the BMB STAT course.
+university: Imperial College London
+difficulty_level: 2
+time_needed: 1 hour
+programming_language: r
