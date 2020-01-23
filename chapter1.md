@@ -114,7 +114,7 @@ success_msg("Well done, this is correct")
 
 ```yaml
 type: NormalExercise
-key: ca1cd4f3cd
+key: e202347da0
 lang: r
 xp: 100
 skills: 1
@@ -154,7 +154,7 @@ dbinom(0, size = 15, prob = 0.04)
 
 `@sct`
 ```{r}
-test_function("dbinom", args = c("x", "size", "prob"))
+ex() %>% check_function("dbinom") %>% check_result("0.5420864") %>% check_equal()
 
 success_msg("Well done, this one was a bit trickier and needed you to understand the different arguments within the function")
 ```
@@ -214,21 +214,23 @@ success_msg("Well done, you used the pbinom function correctly")
 ## Binomial calculations 5
 
 ```yaml
-type: NormalExercise
-key: 3029b4d385
-lang: r
-xp: 100
-skills: 1
+type: MultipleChoiceExercise
+key: b53afc8bdd
+xp: 50
 ```
 
 Now let's return to our heart attack example.
-
-`@instructions`
 In a particular hospital, 15 people are admitted with a heart attack. <br />
 The chance of a fatal heart attack is the same as the previous question, 0.04 (4 in 100).<br />
 What is the probability that more than 4 people die as a result of that attack?<br />
 <br />
 The first bar chart shows the probability distribution of this problem, and the second is zoomed in so that you can see the area shaded in red which represents the probability density you are calculating in this question.
+
+`@possible_answers`
+- [0.0002194314]
+- 0.9997806
+- 4.930891e-13
+- 1
 
 `@hint`
 - remember, pbinom calculates the probability density up to the value in the given in the x argument - therefore you will need to flip this question around, and use 1 - pbinom to calculate the probability above a certain value of x.
@@ -242,27 +244,17 @@ barplot(c(rep(0,5),dbinom(5:15, 15, 0.04)), names.arg = 0:15, space = 0, col = "
 barplot(dbinom(0:15, 15, 0.04), names.arg = 0:15, space = 0, col = "grey", xlab = "No. of fatal heart attacks", ylab = "Probability", main = "zoom in - y axis from 0 to 0.0003", ylim=c(0,0.0003))
 barplot(c(rep(0,5),dbinom(5:15, 15, 0.04)), names.arg = 0:15, space = 0, col = "red", ylim=c(0,0.0003), add = T)
 
-```
-
-`@sample_code`
-```{r}
-# The probability of more than 4 people dying of a heart attack
-
-
-```
-
-`@solution`
-```{r}
-# The probability of more than 4 people dying of a heart attack
-1- pbinom(4, size = 15, prob = 0.04)
 
 ```
 
 `@sct`
 ```{r}
-test_function("pbinom", args = c("q", "size", "prob"))
+msg1 <- "This correct, well done! If you got it right first time, good for you - you realised that you needed to use the concept of mutual exclusivity, and flip the problem around - 1-pbinom(4,15,0.04)"
+msg2 <- "Not quite - you need to use the concept of mutual exclusivity here. This answer comes from using pbinom(4,15,0.04). This is the probability that 4 or less people admitted with a heart attack die - you need to flip it around."
+msg3 <- "Not quite - this answer comes from using pbinom(4,15,0.96) - you have not quite used the correct probability here. Although it may seem logical to flip the probability from 0.04 to 0.96, you would also need to adjust the x value."
+msg4 <- "Not quite - this answer comes from using 1-pbinom(4,15,0.96) - you have not used the correct probability here, although you are correct that you need to flip the problem around and use the concept of mutual exclusivity"
 
-success_msg("Well done, this is correct")
+ex() %>% check_mc(1, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
 ---
